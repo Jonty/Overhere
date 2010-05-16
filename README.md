@@ -17,3 +17,4 @@ Notes
 
 * This is completely untested in anything other than firefox.
 * Yes, I know, Spotify is only available in Europe. Sucks to be you.
+* My javascript is so evil it should be imprisoned. Frontend is not my day job.
