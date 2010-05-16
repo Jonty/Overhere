@@ -11,7 +11,7 @@ function getTracks () {
             user + '&api_key=' + lastfmApiKey + '&format=json&callback=?',
 
         function (data) {
-            if (data.recenttracks) {
+            if ('recenttracks' in data && 'track' in data.recenttracks) {
                 tracks = data.recenttracks.track.reverse();
                 addTracksToQueue(tracks);
             }
