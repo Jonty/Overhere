@@ -36,7 +36,6 @@ function addTracksToQueue (tracks) {
                         escape(track.artist['#text'] + ' ' + track.name) + '&callback=?',
 
                     function (data) {
-                        console.log(data);
                         if ('uri' in data) {
                             queue.push(data);
                             if (playing == false) {
@@ -84,6 +83,7 @@ function nextTrack () {
 
 function play () {
     getTracks();
+
     if (playing == false) {
         $('#playStatus').hide();
         $('#status').text('Looking for recent tracks to play...');
@@ -98,8 +98,13 @@ function start() {
         return;
     }
 
+    $('#usertext').text(user);
+    $('#note').hide();
+
     play();
     hideUserInput();
+
+    return false;
 }
 
 function showUserInput () {

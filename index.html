@@ -3,11 +3,89 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="date.js"></script>
     <script type="text/javascript" src="overhere.js"></script>
+
+    <title>Overhere</title>
+
+    <style type="text/css">
+        body {
+            font-family: Helvetica, Bitstream Vera Sans, sans-serif;
+            color: #000000;
+        }
+        h1 small {
+            font-size: 0.5em;
+            font-weight: normal;
+        }
+        .content {
+            text-align: left;
+            margin-left: 20%;
+            margin-top: 8%;
+        }
+        .heading {
+            font-size: 3em;
+            font-weight: bold;
+        }
+        .item {
+            margin-left: 3%;
+        }
+        .mainlink {
+            font-size: 2em;
+        }
+        .comment {
+            color: gray;
+            font-size: 1em;
+            margin-left: 5%;
+        }
+        A:link {
+            text-decoration: none;
+            color: #008000;
+        }
+        A:visited {
+            text-decoration: none;
+            color: #008000;
+        }
+        A:active {
+            text-decoration: none;
+            color: #008000;
+        }
+        A:hover {
+            text-decoration: underline;
+            color: #008000;
+        }
+    </style>
+
 </head>
 <body>
-    <div id="userInput">User: <input id="username" type="text"><input type="submit" value="Go!" onclick="start()"></div>
-    <div id="status"></div>
-    <div id="playStatus" style="display: none;">Now Playing: <span id="nowPlaying"></span></div>
-    <div id="switchUser" style="display: none;"><a href="javascript:showUserInput()">Switch User</a></div>
+    <div>
+        <span>&nbsp;</span>
+        <a href="javascript:showUserInput()" id="switchUser" style="display: none;">
+            Switch User
+            <small>
+                (currently following <strong><span id="usertext"></span></strong>)
+            </small>
+        </a>
+    </div>
+    <div class="content">
+        <h1 style="color: grey;">Overhere <small>...listening in on a private experience.</small></h1>
+
+        <div id="status" class="mainlink"></div>
+        <div id="playStatus" style="display: none;" class="mainlink">
+            <strong>Now Playing:</strong> <span id="nowPlaying"></span>
+            <br><br>
+        </div>
+
+        <div id="userInput">
+            <form onsubmit="return start()">
+                <strong>Last.fm user to follow:</strong> <input id="username" type="text">
+                <input type="submit" value="Make music go now!">
+            </form>
+        </div>
+
+        <div id="note">
+            <small style="line-height: 10em">
+                <strong>Note:</strong>
+                You need spotify for this to work, otherwise your browser will cry emo tears.
+            </small>
+        </div>
+    </div>
 </body>
 </html>
