@@ -68,7 +68,20 @@ function nextTrack () {
         $('#playStatus').show();
         $('#nowPlaying').text(track['artist'] + ' - ' + track['name']);
 
-        location.href = track['uri'];
+        oldFrame = $('#musicFrame');
+        if (oldFrame) {
+            oldFrame.remove();
+        }
+
+        if (document.createElement && (iframe = document.createElement('iframe'))) {
+            iframe.src = track['uri'];
+            iframe.name = 'musicFrame';
+            iframe.id = 'musicFrame';
+            iframe.height = 1;
+            iframe.width = 1;
+            document.body.appendChild(iframe);
+        }
+
         setTimeout('nextTrack()', (track['length'] * 1000));
 
     } else {
