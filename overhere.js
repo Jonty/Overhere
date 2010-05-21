@@ -25,8 +25,12 @@ function addTracksToQueue (tracks) {
     $.each (tracks, function(i, track) {
         if ('date' in track) {
 
-            var tenMinsAgo = Date.now().add(-20).minutes();
-            var trackTime = Date.parse(track.date['#text']).add(1).hour();
+            // Datejs timezone conversion is crack, so correct for it manually.
+            var now = Date.now();
+            var now = now.add(now.getTimezoneOffset()).minutes();
+
+            var tenMinsAgo = now.add(-20).minutes();
+            var trackTime = Date.parse(track.date['#text']);
 
             if (trackTime.compareTo(tenMinsAgo) == 1 && !(track['date'].uts in tracksSeen)) {
 
