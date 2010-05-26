@@ -118,6 +118,8 @@ function start() {
     $('#usertext').text(user);
     $('#note').hide();
 
+    window.location.hash = user;
+
     play();
     hideUserInput();
 
@@ -132,4 +134,12 @@ function showUserInput () {
 function hideUserInput () {
     $('#switchUser').show();
     $('#userInput').hide();
+}
+
+function load () {
+    hash = window.location.hash;
+    user = hash.substring(1);
+    $('#username').val(user);
+
+    start();
 }
