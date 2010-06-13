@@ -1,4 +1,4 @@
-var pathToProxy = 'http://jonty.co.uk/bits/overhere/';
+var pathToProxy = '';
 var lastfmApiKey = 'b25b959554ed76058ac220b7b2e0a026';
 
 var user = '';
