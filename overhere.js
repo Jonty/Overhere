@@ -1,5 +1,5 @@
 var pathToProxy = '';
-var lastfmApiKey = 'b25b959554ed76058ac220b7b2e0a026';
+var lastfmApiKey = 'b310eee6bf595b01e4e07a9d78ff9609';
 
 var user = '';
 var queue = Array();
@@ -30,14 +30,15 @@ function addTracksToQueue (tracks) {
             var now = now.add(now.getTimezoneOffset()).minutes();
 
             var tenMinsAgo = now.add(-20).minutes();
-            var trackTime = Date.parse(track.date['#text']);
+            var trackTime = new Date();
+            trackTime.setTime(track.date.uts*1000);
 
             if (trackTime.compareTo(tenMinsAgo) == 1 && !(track['date'].uts in tracksSeen)) {
 
                 tracksSeen[track['date'].uts] = 1;
 
                 $.getJSON(pathToProxy + 'spotiproxy.php?q=' + 
-                        escape(track.artist['#text'] + ' ' + track.name) + '&callback=?',
+                        escape(track.artist.name + ' ' + track.name) + '&callback=?',
 
                     function (data) {
                         if ('uri' in data) {
