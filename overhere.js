@@ -22,22 +22,19 @@ function getTracks () {
 }
 
 function addTracksToQueue (tracks) {
+
     $.each (tracks, function(i, track) {
         if ('date' in track) {
 
             // Datejs timezone conversion is crack, so correct for it manually.
             var now = Date.now();
-            var now = now.add(now.getTimezoneOffset()).minutes();
+            var timestamp = Math.floor(now.valueOf() / 1000) - (20 * 60);
 
-            var tenMinsAgo = now.add(-20).minutes();
-            var trackTime = new Date();
-            trackTime.setTime(track.date.uts*1000);
+            if (track.date.uts > timestamp && !(track.date.uts in tracksSeen)) {
 
-            if (trackTime.compareTo(tenMinsAgo) == 1 && !(track['date'].uts in tracksSeen)) {
+                tracksSeen[track.date.uts] = 1;
 
-                tracksSeen[track['date'].uts] = 1;
-
-                $.getJSON(pathToProxy + 'spotiproxy.php?q=' + 
+                $.getJSON(pathToProxy + 'spotiproxy.php?q=' +
                         escape(track.artist.name + ' ' + track.name) + '&callback=?',
 
                     function (data) {
@@ -59,6 +56,7 @@ function addTracksToQueue (tracks) {
         $('#status').show();
         showUserInput();
     }
+
 }
 
 function nextTrack () {
