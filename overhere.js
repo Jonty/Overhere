@@ -5,6 +5,7 @@ var user = '';
 var queue = Array();
 var tracksSeen = Array();
 var playing = false;
+var trackAdvance = undefined;
 
 function getTracks () {
     $.getJSON('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + 
@@ -64,6 +65,10 @@ function nextTrack () {
 
     if (queue.length) {
 
+        if (trackAdvance != undefined) {
+            clearTimeout(trackAdvance);
+        }
+
         playing = true;
         track = queue.shift();
 
@@ -85,7 +90,7 @@ function nextTrack () {
             document.body.appendChild(iframe);
         }
 
-        setTimeout('nextTrack()', (track['length'] * 1000));
+        trackAdvance = setTimeout('nextTrack()', (track['length'] * 1000));
 
     } else {
 
