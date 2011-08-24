@@ -36,7 +36,7 @@ function addTracksToQueue (tracks) {
                 tracksSeen[track.date.uts] = 1;
 
                 $.getJSON(pathToProxy + 'spotiproxy.php?q=' +
-                        escape(track.artist.name + ' ' + track.name) + '&callback=?',
+                        escape(track.artist['#text'] + ' ' + track.name) + '&callback=?',
 
                     function (data) {
                         if ('uri' in data) {
