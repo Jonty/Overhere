@@ -23,4 +23,3 @@ Known Bugs
 ----------
 
 * Sporadically you might get tracks playing back in the wrong order, this is because the resolution callbacks are async and very occasionally return in the wrong order.
-* Occasionally a track might fail to play due to country restrictions. This is because I've not actually implemented them - very VERY few tracks are not available in all current territories.
